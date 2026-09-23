@@ -2,6 +2,12 @@
 
 Every release of quvyta-cli, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/). While the version is an alpha, anything may change between releases, the settings and the saved conversations included.
 
+## 0.1.0-alpha.2 - 2026-09-23
+
+### Added
+
+- qcli says when a newer version is out. When it opens, at most once a day and without waiting for the answer, it asks crates.io for the newest version of `quvyta-cli`; only the package's name and the version you run go out. It is on unless you turn it off with `update-notice = false` in `~/.config/quvyta/quvyta.conf`, the one switch for the whole Quvyta family. The README's Network section says exactly what is sent.
+
 ## 0.1.0-alpha.1 - 2026-09-23
 
 ### Added

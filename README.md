@@ -62,11 +62,17 @@ The mouse works everywhere: the buttons can be clicked and the conversation scro
 
 ## Network
 
-qcli connects to one place: the provider address in your settings. Nothing goes out when it starts; the first request leaves when you send your first message, and each request carries the conversation of that folder, the folder's `AGENTS.md` if there is one, and the key in the header you named. qcli does not look for updates and sends nothing anywhere else.
+qcli connects to two places.
+
+- **Your provider**, at the address in your settings. Nothing goes to it when qcli starts; the first request leaves when you send your first message. Each request carries the conversation of that folder, the folder's `AGENTS.md` if there is one, and the key in the header you named.
+- **crates.io**, to say when a newer version is out. When qcli opens, at most once a day and without waiting for the answer, it asks crates.io's index for the versions of `quvyta-cli`. Only the package's name and the version you run go out (as the request's `User-Agent`); nothing about you, the folder or the conversation. A newer version is said in the corner with how to update. No network is silence. It is one switch for the whole Quvyta family: `update-notice = false` in `~/.config/quvyta/quvyta.conf` turns it off for every Quvyta application.
+
+qcli sends nothing anywhere else.
 
 ## Where things are kept
 
 - Settings: `~/.config/quvyta/cli.conf`.
+- When the update question was last asked: `~/.local/state/quvyta/cli/update-check`.
 - Conversations: `~/.local/state/quvyta/cli/conversations/`, one file per folder, written after every message. `ctrl+n` renames the old file with the time in it instead of deleting it.
 
 ## Licence

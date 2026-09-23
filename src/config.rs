@@ -73,6 +73,25 @@ pub fn spoken() -> I18n {
     i18n
 }
 
+/// Where the family's update notice reads its switch and remembers when it last asked.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct UpdateFolders {
+    /// The family's configuration folder, whose shared file holds the switch.
+    pub config: PathBuf,
+    /// qcli's state folder, which remembers when the question was last asked.
+    pub state: PathBuf,
+}
+
+impl UpdateFolders {
+    /// This machine's folders, or `None` without a home folder, where nothing could remember the
+    /// switch or the last question and so nothing is asked.
+    #[must_use]
+    pub fn here() -> Option<Self> {
+        let family = Family::QUVYTA;
+        family.config_dir().zip(family.state_dir(APP)).map(|(config, state)| Self { config, state })
+    }
+}
+
 /// The provider as the settings describe it. Every field is what the person wrote, trimmed.
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
 pub struct Provider {

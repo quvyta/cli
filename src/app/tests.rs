@@ -406,3 +406,27 @@ fn live_a_real_model_reads_a_file_it_is_asked_about() {
     let answer = messages.last().map(ToString::to_string).unwrap_or_default().to_lowercase();
     assert!(answer.contains("cardamom"), "the answer comes from the file: {answer}");
 }
+
+/// The folders of the update notice under the test's own place, never the person's.
+fn update_folders(place: &Place) -> config::UpdateFolders {
+    config::UpdateFolders { config: place.base.join("config"), state: place.base.join("state") }
+}
+
+#[test]
+fn qcli_asks_once_at_start_for_a_newer_version_of_itself() {
+    let place = Place::new("updates");
+    let harness = harness(place.app(None).update_notice(Some(update_folders(&place))));
+    let asked = harness.update_checks().to_vec();
+    assert_eq!(asked.len(), 1, "one question at start");
+    assert_eq!((asked[0].package(), asked[0].current()), ("quvyta-cli", env!("CARGO_PKG_VERSION")));
+}
+
+#[test]
+fn with_the_familys_switch_off_nothing_is_asked() {
+    let place = Place::new("updates-off");
+    std::fs::write(place.base.join("config/quvyta.conf"), "update-notice = false\n").expect("the family's file");
+    let mut harness = harness(place.app(None).update_notice(Some(update_folders(&place))));
+    assert!(harness.update_checks().is_empty(), "nothing is asked");
+    harness.set_latest_version(Some("9.4.7"));
+    assert!(!harness.screen().contains("is out"));
+}

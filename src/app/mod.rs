@@ -10,6 +10,7 @@
 //! accepts.
 
 mod form;
+mod updates;
 mod view;
 
 #[cfg(test)]
@@ -19,11 +20,11 @@ use std::collections::{HashMap, VecDeque};
 use std::io;
 
 use qframe::prelude::*;
-use qframe::runtime::{Task, TaskId};
+use qframe::runtime::{Task, TaskId, Update};
 use qframe::storage::{Family, Settings};
 
 use crate::actions::{Action, Outcome, Preview, Workspace};
-use crate::config::{self, Missing, Provider};
+use crate::config::{self, Missing, Provider, UpdateFolders};
 use crate::conversation::{self, Call, Conversation};
 use crate::instructions;
 use crate::provider::{Delta, KeyError, ProviderError, Reply, Stop};
@@ -73,6 +74,8 @@ pub enum Msg {
     SaveProvider,
     /// Close the provider form without saving.
     CloseProvider,
+    /// A newer version of qcli is out.
+    NewVersion(Update),
 }
 
 /// What the chat is doing.
@@ -157,6 +160,8 @@ pub struct QCli {
     /// The number of the turn, part of the conversation view's id: a new turn opens the view at
     /// its end even when the person had scrolled up to read.
     turn: u64,
+    /// Where the family's update notice looks; `None` asks nothing.
+    updates: Option<UpdateFolders>,
 }
 
 type Value = serde_json::Value;
@@ -186,6 +191,7 @@ impl QCli {
             notice: None,
             form,
             turn: 0,
+            updates: None,
         }
     }
 
@@ -406,10 +412,11 @@ impl App for QCli {
     type Msg = Msg;
 
     fn init(&mut self) -> Command<Msg> {
-        match &self.form {
+        let focus = match &self.form {
             Some(_) => Command::focus(form::FIRST),
             None => Self::to_input(),
-        }
+        };
+        Command::batch([focus, self.ask_for_update()])
     }
 
     fn update(&mut self, msg: Msg) -> Command<Msg> {
@@ -467,6 +474,7 @@ impl App for QCli {
                 Command::none()
             }
             Msg::SaveProvider => self.save_provider(),
+            Msg::NewVersion(update) => Command::toast(update.toast()),
             Msg::CloseProvider => {
                 self.form = None;
                 Self::to_input()
@@ -508,7 +516,7 @@ pub fn run() -> io::Result<()> {
     let store = Store::new(&conversations, workspace.root());
     let settings = config::load();
     let preferences = config::preferences();
-    let app = QCli::new(workspace, store, settings.clone());
+    let app = QCli::new(workspace, store, settings.clone()).update_notice(UpdateFolders::here());
     let mut runtime =
         Runtime::new(app).settings(&settings).preferences(&preferences).keymap_source("keymap.toml", KEYMAP);
     for &(file, text) in crate::locales() {

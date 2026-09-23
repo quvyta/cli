@@ -5,7 +5,7 @@ repository = "https://github.com/quvyta/cli"
 readme = "README.md"
 keywords = ["tui", "terminal", "agent", "llm", "coding"]
 categories = ["command-line-utilities", "development-tools"]
-version = "0.1.0-alpha.1"
+version = "0.1.0-alpha.2"
 edition = "2024"
 rust-version = "1.95"
 license = "MIT"
@@ -19,7 +19,7 @@ name = "qcli"
 path = "src/lib.rs"
 
 [dependencies]
-quvyta-framework = "0.1.19"
+quvyta-framework = { version = "0.1.19", features = ["updates"] }
 serde_json = { version = "1.0.150", features = ["preserve_order"] }
 ureq = { version = "3.4.2", default-features = false, features = ["rustls"] }
 
