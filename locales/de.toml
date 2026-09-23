@@ -1,0 +1,70 @@
+# Deutsch
+
+[meta]
+name = "Deutsch"
+code = "de"
+fallback = "en"
+
+[app]
+name = "qcli"
+
+[header]
+no-model = "kein Modell gewählt"
+
+[chat]
+empty = "Frag alles über diesen Ordner. Das Modell kann hier lesen, auflisten und suchen; es fragt, bevor es eine Datei ändert oder einen Befehl ausführt."
+agents = "{file} wird als Anweisung gelesen."
+placeholder = "Nachricht schreiben"
+
+[action]
+read = "lesen"
+list = "auflisten"
+search = "suchen"
+edit = "ändern"
+run = "ausführen"
+more = { one = "und {n} weitere Zeile", other = "und {n} weitere Zeilen" }
+empty = "keine Ausgabe"
+
+[ask]
+edit = "{path} ändern?"
+run = "Diesen Befehl ausführen?"
+allow = "Erlauben"
+deny = "Ablehnen"
+
+[status]
+waiting = "warte auf die Antwort"
+acting = "arbeite an {what}"
+
+[notice]
+provider = "Der Anbieter hat nicht geantwortet: {said}"
+unset = "Der Anbieter ist noch nicht eingerichtet. Öffne die Anbieter-Einstellungen und füge einen hinzu."
+stopped = "Gestoppt."
+cut = "Die Antwort hat ihre Längengrenze erreicht und wurde unterbrochen."
+rounds = "Der Durchlauf wurde nach {n} Anfragen beendet. Schreib weiter, damit er fortfährt."
+unsaved = "Das Gespräch konnte nicht gespeichert werden: {reason}"
+
+[provider]
+title = "Anbieter"
+intro = "Wo das Modell liegt. Der Schlüssel selbst wird hier nie gespeichert, nur die Datei, in der er steht."
+address = "Adresse"
+address-hint = "Die Adresse, unter der die Messages-API liegt; Anfragen gehen an …/v1/messages"
+model = "Modell"
+model-hint = "Der Name des Modells, so wie der Anbieter ihn schreibt"
+key-file = "Schlüsseldatei"
+key-file-hint = "Eine Datei, die nur den Schlüssel enthält; ~/ ist dein Home-Ordner"
+key-header = "Schlüssel-Header"
+key-header-hint = "Leer lassen für x-api-key; manche Server erwarten einen anderen Namen"
+empty = "Dies darf nicht leer sein."
+key-unreadable = "{path} kann nicht gelesen werden: {reason}"
+not-a-key = "{path} enthält keinen Schlüssel: Die Datei ist leer oder hat mehr als eine Zeile."
+unsaved = "Die Einstellungen konnten nicht gespeichert werden: {reason}"
+save = "Speichern"
+cancel = "Abbrechen"
+
+[keys]
+send = "senden"
+stop = "stopp"
+allow = "erlauben"
+deny = "ablehnen"
+new = "neuer Chat"
+provider = "Anbieter"

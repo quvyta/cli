@@ -1,0 +1,70 @@
+# Français
+
+[meta]
+name = "Français"
+code = "fr"
+fallback = "en"
+
+[app]
+name = "qcli"
+
+[header]
+no-model = "aucun modèle défini"
+
+[chat]
+empty = "Posez une question sur ce dossier. Le modèle peut y lire, lister et chercher ; il demande avant de modifier un fichier ou d'exécuter une commande."
+agents = "{file} est lu comme des instructions."
+placeholder = "Écrivez un message"
+
+[action]
+read = "lire"
+list = "lister"
+search = "chercher"
+edit = "modifier"
+run = "exécuter"
+more = { one = "et {n} ligne de plus", other = "et {n} lignes de plus" }
+empty = "aucune sortie"
+
+[ask]
+edit = "Modifier {path} ?"
+run = "Exécuter cette commande ?"
+allow = "Autoriser"
+deny = "Refuser"
+
+[status]
+waiting = "en attente de la réponse"
+acting = "travaille sur {what}"
+
+[notice]
+provider = "Le fournisseur n'a pas répondu : {said}"
+unset = "Le fournisseur n'est pas encore configuré. Ouvrez les paramètres du fournisseur pour en ajouter un."
+stopped = "Interrompu."
+cut = "La réponse a atteint sa limite de longueur et s'est arrêtée en cours de route."
+rounds = "Le tour s'est arrêté après {n} requêtes. Écrivez à nouveau pour qu'il continue."
+unsaved = "La conversation n'a pas pu être enregistrée : {reason}"
+
+[provider]
+title = "Fournisseur"
+intro = "L'emplacement du modèle. La clé elle-même n'est jamais écrite ici, seulement le fichier qui la contient."
+address = "Adresse"
+address-hint = "L'adresse sous laquelle vit l'API Messages ; les requêtes vont à …/v1/messages"
+model = "Modèle"
+model-hint = "Le nom du modèle tel que l'écrit le fournisseur"
+key-file = "Fichier de clé"
+key-file-hint = "Un fichier ne contenant que la clé ; ~/ est votre dossier personnel"
+key-header = "En-tête de clé"
+key-header-hint = "Laissez vide pour x-api-key ; certains serveurs attendent un autre nom"
+empty = "Ce champ ne peut pas être vide."
+key-unreadable = "Impossible de lire {path} : {reason}"
+not-a-key = "{path} ne contient pas de clé : il est vide ou comporte plus d'une ligne."
+unsaved = "Impossible d'écrire les paramètres : {reason}"
+save = "Enregistrer"
+cancel = "Annuler"
+
+[keys]
+send = "envoyer"
+stop = "arrêter"
+allow = "autoriser"
+deny = "refuser"
+new = "nouvelle discussion"
+provider = "fournisseur"

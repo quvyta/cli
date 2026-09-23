@@ -1,0 +1,42 @@
+[package]
+name = "quvyta-cli"
+description = "A small coding agent in the terminal: chat with a model that reads, searches, edits and runs in one folder, and asks before it changes anything (alpha)"
+repository = "https://github.com/quvyta/cli"
+readme = "README.md"
+keywords = ["tui", "terminal", "agent", "llm", "coding"]
+categories = ["command-line-utilities", "development-tools"]
+version = "0.1.0-alpha.1"
+edition = "2024"
+rust-version = "1.95"
+license = "MIT"
+# Only what the program is built from goes into the package; the rest of the repository is for
+# working on it. Every entry starts at the root: without the leading slash cargo matches the name
+# at any depth, so a file of the same name in a subfolder would slip into the package.
+include = ["/src/**", "/locales/**", "/keymap.toml", "/Cargo.toml", "/Cargo.lock", "/README.md", "/CHANGELOG.md", "/LICENSE"]
+
+[lib]
+name = "qcli"
+path = "src/lib.rs"
+
+[dependencies]
+quvyta-framework = "0.1.19"
+serde_json = { version = "1.0.150", features = ["preserve_order"] }
+ureq = { version = "3.4.2", default-features = false, features = ["rustls"] }
+
+[dev-dependencies]
+toml = { version = "1.1.6", default-features = false, features = ["std", "parse"] }
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "deny"
+
+[lints.rustdoc]
+broken_intra_doc_links = "deny"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+cast_lossless = "deny"
+needless_pass_by_value = "deny"
+redundant_closure_for_method_calls = "deny"
+semicolon_if_nothing_returned = "deny"
+uninlined_format_args = "deny"

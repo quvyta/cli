@@ -1,0 +1,69 @@
+# qcli text — English
+
+[meta]
+name = "English"
+code = "en"
+
+[app]
+name = "qcli"
+
+[header]
+no-model = "no model set"
+
+[chat]
+empty = "Ask anything about this folder. The model can read, list and search here; it asks before it edits a file or runs a command."
+agents = "{file} is read as instructions."
+placeholder = "Write a message"
+
+[action]
+read = "read"
+list = "list"
+search = "search"
+edit = "edit"
+run = "run"
+more = { one = "and {n} more line", other = "and {n} more lines" }
+empty = "no output"
+
+[ask]
+edit = "Change {path}?"
+run = "Run this command?"
+allow = "Allow"
+deny = "Decline"
+
+[status]
+waiting = "waiting for the reply"
+acting = "working on {what}"
+
+[notice]
+provider = "The provider did not answer: {said}"
+unset = "The provider is not set up yet. Open the provider settings to add one."
+stopped = "Stopped."
+cut = "The reply reached its length limit and stopped part way."
+rounds = "The turn stopped after {n} requests. Write again to let it go on."
+unsaved = "The conversation could not be saved: {reason}"
+
+[provider]
+title = "Provider"
+intro = "Where the model is. The key itself is never written here, only the file it is in."
+address = "Address"
+address-hint = "The address the Messages API lives under; requests go to …/v1/messages"
+model = "Model"
+model-hint = "The model's name as the provider writes it"
+key-file = "Key file"
+key-file-hint = "A file holding only the key; ~/ is your home folder"
+key-header = "Key header"
+key-header-hint = "Leave empty for x-api-key; some servers want another name"
+empty = "This cannot be empty."
+key-unreadable = "{path} cannot be read: {reason}"
+not-a-key = "{path} does not hold a key: it is empty or more than one line."
+unsaved = "The settings could not be written: {reason}"
+save = "Save"
+cancel = "Cancel"
+
+[keys]
+send = "send"
+stop = "stop"
+allow = "allow"
+deny = "decline"
+new = "new chat"
+provider = "provider"

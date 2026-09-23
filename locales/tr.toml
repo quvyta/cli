@@ -1,0 +1,69 @@
+# qcli metinleri — Türkçe
+
+[meta]
+name = "Türkçe"
+code = "tr"
+
+[app]
+name = "qcli"
+
+[header]
+no-model = "model seçilmedi"
+
+[chat]
+empty = "Bu klasörle ilgili ne istersen sor. Model burada okuyabilir, listeleyebilir ve arayabilir; bir dosyayı değiştirmeden ya da bir komut çalıştırmadan önce sana sorar."
+agents = "{file} talimat olarak okunuyor."
+placeholder = "Bir mesaj yaz"
+
+[action]
+read = "oku"
+list = "listele"
+search = "ara"
+edit = "düzenle"
+run = "çalıştır"
+more = { one = "ve {n} satır daha", other = "ve {n} satır daha" }
+empty = "çıktı yok"
+
+[ask]
+edit = "{path} değişsin mi?"
+run = "Bu komut çalışsın mı?"
+allow = "İzin ver"
+deny = "Reddet"
+
+[status]
+waiting = "cevap bekleniyor"
+acting = "{what} üzerinde çalışılıyor"
+
+[notice]
+provider = "Sağlayıcı cevap vermedi: {said}"
+unset = "Sağlayıcı henüz ayarlanmadı. Eklemek için sağlayıcı ayarlarını aç."
+stopped = "Durduruldu."
+cut = "Cevap uzunluk sınırına geldi ve yarıda kaldı."
+rounds = "Bu tur {n} istekten sonra durdu. Devam etmesi için yeniden yaz."
+unsaved = "Sohbet kaydedilemedi: {reason}"
+
+[provider]
+title = "Sağlayıcı"
+intro = "Modelin nerede olduğu. Anahtarın kendisi buraya hiç yazılmaz, yalnızca durduğu dosya."
+address = "Adres"
+address-hint = "Messages API'sinin bulunduğu adres; istekler …/v1/messages adresine gider"
+model = "Model"
+model-hint = "Modelin, sağlayıcının yazdığı biçimdeki adı"
+key-file = "Anahtar dosyası"
+key-file-hint = "Yalnızca anahtarı tutan bir dosya; ~/ ev klasörün demek"
+key-header = "Anahtar başlığı"
+key-header-hint = "x-api-key için boş bırak; bazı sunucular başka bir ad ister"
+empty = "Bu boş kalamaz."
+key-unreadable = "{path} okunamıyor: {reason}"
+not-a-key = "{path} bir anahtar tutmuyor: boş ya da birden fazla satır."
+unsaved = "Ayarlar yazılamadı: {reason}"
+save = "Kaydet"
+cancel = "Vazgeç"
+
+[keys]
+send = "gönder"
+stop = "durdur"
+allow = "izin ver"
+deny = "reddet"
+new = "yeni sohbet"
+provider = "sağlayıcı"

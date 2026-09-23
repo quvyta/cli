@@ -1,0 +1,70 @@
+# 简体中文
+
+[meta]
+name = "简体中文"
+code = "zh-Hans"
+fallback = "en"
+
+[app]
+name = "qcli"
+
+[header]
+no-model = "未设置模型"
+
+[chat]
+empty = "随便问这个文件夹里的任何内容。模型可以在这里读取、列出和搜索；编辑文件或运行命令前会先询问你。"
+agents = "{file} 将作为指令读取。"
+placeholder = "输入消息"
+
+[action]
+read = "读取"
+list = "列出"
+search = "搜索"
+edit = "编辑"
+run = "运行"
+more = { other = "还有 {n} 行" }
+empty = "无输出"
+
+[ask]
+edit = "修改 {path}？"
+run = "运行此命令？"
+allow = "允许"
+deny = "拒绝"
+
+[status]
+waiting = "正在等待回复"
+acting = "正在处理 {what}"
+
+[notice]
+provider = "提供商没有回应：{said}"
+unset = "尚未设置提供商。打开提供商设置以添加。"
+stopped = "已停止。"
+cut = "回复达到长度上限，中途停止。"
+rounds = "本轮在 {n} 次请求后停止。再发一条消息让它继续。"
+unsaved = "对话未能保存：{reason}"
+
+[provider]
+title = "提供商"
+intro = "模型所在的位置。密钥本身不会写在这里，只保存它所在的文件。"
+address = "地址"
+address-hint = "Messages API 所在的地址；请求发送到 …/v1/messages"
+model = "模型"
+model-hint = "提供商所写的模型名称"
+key-file = "密钥文件"
+key-file-hint = "仅存放密钥的文件；~/ 表示你的主目录"
+key-header = "密钥请求头"
+key-header-hint = "留空则使用 x-api-key；某些服务器需要其他名称"
+empty = "此项不能为空。"
+key-unreadable = "无法读取 {path}：{reason}"
+not-a-key = "{path} 中没有密钥：文件为空或多于一行。"
+unsaved = "无法写入设置：{reason}"
+save = "保存"
+cancel = "取消"
+
+[keys]
+send = "发送"
+stop = "停止"
+allow = "允许"
+deny = "拒绝"
+new = "新对话"
+provider = "提供商"

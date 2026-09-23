@@ -1,0 +1,70 @@
+# 日本語
+
+[meta]
+name = "日本語"
+code = "ja"
+fallback = "en"
+
+[app]
+name = "qcli"
+
+[header]
+no-model = "モデルが設定されていません"
+
+[chat]
+empty = "このフォルダについて何でも聞いてください。モデルはここで読み取り・一覧・検索ができます。ファイルの編集やコマンドの実行の前には確認します。"
+agents = "{file} を指示として読み込みます。"
+placeholder = "メッセージを入力"
+
+[action]
+read = "読み取り"
+list = "一覧"
+search = "検索"
+edit = "編集"
+run = "実行"
+more = { other = "他 {n} 行" }
+empty = "出力なし"
+
+[ask]
+edit = "{path} を変更しますか？"
+run = "このコマンドを実行しますか？"
+allow = "許可"
+deny = "拒否"
+
+[status]
+waiting = "返信待ち"
+acting = "{what} を処理中"
+
+[notice]
+provider = "プロバイダーから応答がありませんでした：{said}"
+unset = "プロバイダーはまだ設定されていません。プロバイダー設定を開いて追加してください。"
+stopped = "停止しました。"
+cut = "返信が長さの上限に達したため、途中で停止しました。"
+rounds = "{n} 回のリクエストの後でターンが停止しました。もう一度入力すると続行します。"
+unsaved = "会話を保存できませんでした：{reason}"
+
+[provider]
+title = "プロバイダー"
+intro = "モデルの場所です。キー自体はここには書き込まれず、それが入っているファイルのみ記録されます。"
+address = "アドレス"
+address-hint = "Messages API が置かれているアドレスです。リクエストは …/v1/messages に送信されます"
+model = "モデル"
+model-hint = "プロバイダー表記のままのモデル名"
+key-file = "キーファイル"
+key-file-hint = "キーのみを記載したファイル。~/ はホームフォルダです"
+key-header = "キーヘッダー"
+key-header-hint = "空欄の場合は x-api-key。別の名前を要求するサーバーもあります"
+empty = "空にはできません。"
+key-unreadable = "{path} を読み込めません: {reason}"
+not-a-key = "{path} にキーがありません: 空か、複数行になっています。"
+unsaved = "設定を書き込めませんでした: {reason}"
+save = "保存"
+cancel = "キャンセル"
+
+[keys]
+send = "送信"
+stop = "停止"
+allow = "許可"
+deny = "拒否"
+new = "新しいチャット"
+provider = "プロバイダー"

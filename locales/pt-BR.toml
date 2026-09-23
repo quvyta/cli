@@ -1,0 +1,70 @@
+# Português (Brasil)
+
+[meta]
+name = "Português (Brasil)"
+code = "pt-BR"
+fallback = "en"
+
+[app]
+name = "qcli"
+
+[header]
+no-model = "nenhum modelo definido"
+
+[chat]
+empty = "Pergunte qualquer coisa sobre esta pasta. O modelo pode ler, listar e buscar aqui; ele pede antes de editar um arquivo ou executar um comando."
+agents = "{file} é lido como instruções."
+placeholder = "Escreva uma mensagem"
+
+[action]
+read = "ler"
+list = "listar"
+search = "buscar"
+edit = "editar"
+run = "executar"
+more = { one = "e mais {n} linha", other = "e mais {n} linhas" }
+empty = "sem saída"
+
+[ask]
+edit = "Alterar {path}?"
+run = "Executar este comando?"
+allow = "Permitir"
+deny = "Recusar"
+
+[status]
+waiting = "aguardando a resposta"
+acting = "trabalhando em {what}"
+
+[notice]
+provider = "O provedor não respondeu: {said}"
+unset = "O provedor ainda não foi configurado. Abra as configurações de provedor para adicionar um."
+stopped = "Interrompido."
+cut = "A resposta atingiu o limite de tamanho e parou no meio."
+rounds = "O turno parou após {n} pedidos. Escreva de novo para continuar."
+unsaved = "A conversa não pôde ser salva: {reason}"
+
+[provider]
+title = "Provedor"
+intro = "Onde o modelo está. A chave em si nunca é gravada aqui, apenas o arquivo em que ela está."
+address = "Endereço"
+address-hint = "O endereço onde fica a Messages API; as requisições vão para …/v1/messages"
+model = "Modelo"
+model-hint = "O nome do modelo como o provedor o escreve"
+key-file = "Arquivo de chave"
+key-file-hint = "Um arquivo contendo apenas a chave; ~/ é sua pasta pessoal"
+key-header = "Cabeçalho da chave"
+key-header-hint = "Deixe vazio para x-api-key; alguns servidores usam outro nome"
+empty = "Este campo não pode ficar vazio."
+key-unreadable = "{path} não pode ser lido: {reason}"
+not-a-key = "{path} não contém uma chave: está vazio ou tem mais de uma linha."
+unsaved = "Não foi possível gravar as configurações: {reason}"
+save = "Salvar"
+cancel = "Cancelar"
+
+[keys]
+send = "enviar"
+stop = "parar"
+allow = "permitir"
+deny = "recusar"
+new = "novo chat"
+provider = "provedor"

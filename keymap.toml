@@ -1,0 +1,13 @@
+# qcli's own keys, layered over the framework's built-in keymap.
+#
+# Esc stops the reply or the action going on; it reaches the application only when no nearer
+# widget used it, so in the provider form it closes the form. `allow` and `deny` answer the card
+# of an edit or a command, and act only while one is shown: the writing field is gone then, so
+# the letters cannot be typed by mistake. ctrl+p stays the framework's command palette.
+
+[app]
+stop = "esc"
+allow = "y"
+deny = "n"
+new = "ctrl+n"
+provider = "ctrl+o"

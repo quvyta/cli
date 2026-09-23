@@ -1,0 +1,70 @@
+# Español
+
+[meta]
+name = "Español"
+code = "es"
+fallback = "en"
+
+[app]
+name = "qcli"
+
+[header]
+no-model = "sin modelo asignado"
+
+[chat]
+empty = "Pregunta cualquier cosa sobre esta carpeta. El modelo puede leer, listar y buscar aquí; pide permiso antes de editar un archivo o ejecutar un comando."
+agents = "{file} se lee como instrucciones."
+placeholder = "Escribe un mensaje"
+
+[action]
+read = "leer"
+list = "listar"
+search = "buscar"
+edit = "editar"
+run = "ejecutar"
+more = { one = "y {n} línea más", other = "y {n} líneas más" }
+empty = "sin salida"
+
+[ask]
+edit = "¿Cambiar {path}?"
+run = "¿Ejecutar este comando?"
+allow = "Permitir"
+deny = "Rechazar"
+
+[status]
+waiting = "esperando la respuesta"
+acting = "trabajando en {what}"
+
+[notice]
+provider = "El proveedor no respondió: {said}"
+unset = "El proveedor aún no está configurado. Abre la configuración del proveedor para añadir uno."
+stopped = "Detenido."
+cut = "La respuesta alcanzó el límite de longitud y se detuvo a medias."
+rounds = "El turno se detuvo tras {n} peticiones. Escribe de nuevo para que continúe."
+unsaved = "No se pudo guardar la conversación: {reason}"
+
+[provider]
+title = "Proveedor"
+intro = "Dónde está el modelo. La clave nunca se escribe aquí, solo el archivo en el que está."
+address = "Dirección"
+address-hint = "La dirección bajo la que vive la Messages API; las peticiones van a …/v1/messages"
+model = "Modelo"
+model-hint = "El nombre del modelo tal como lo escribe el proveedor"
+key-file = "Archivo de clave"
+key-file-hint = "Un archivo que contiene solo la clave; ~/ es tu carpeta personal"
+key-header = "Cabecera de la clave"
+key-header-hint = "Déjalo vacío para x-api-key; algunos servidores quieren otro nombre"
+empty = "Esto no puede estar vacío."
+key-unreadable = "No se puede leer {path}: {reason}"
+not-a-key = "{path} no contiene una clave: está vacío o tiene más de una línea."
+unsaved = "No se pudieron guardar los ajustes: {reason}"
+save = "Guardar"
+cancel = "Cancelar"
+
+[keys]
+send = "enviar"
+stop = "detener"
+allow = "permitir"
+deny = "rechazar"
+new = "chat nuevo"
+provider = "proveedor"
