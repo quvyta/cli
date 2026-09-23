@@ -421,10 +421,37 @@ fn qcli_asks_once_at_start_for_a_newer_version_of_itself() {
     assert_eq!((asked[0].package(), asked[0].current()), ("quvyta-cli", env!("CARGO_PKG_VERSION")));
 }
 
+/// The alpha after the one running: `0.1.0-alpha.2` gives `0.1.0-alpha.3`.
+fn next_alpha() -> String {
+    let current = env!("CARGO_PKG_VERSION");
+    let (base, number) = current.rsplit_once('.').expect("an alpha version");
+    let number: u32 = number.parse().expect("the alpha's number");
+    format!("{base}.{}", number + 1)
+}
+
 #[test]
-fn with_the_familys_switch_off_nothing_is_asked() {
+fn a_person_on_an_alpha_is_told_in_the_corner_when_the_next_alpha_is_out() {
+    let place = Place::new("updates-alpha");
+    let mut harness = harness(place.app(None).update_notice(Some(update_folders(&place))));
+    let next = next_alpha();
+    harness.set_latest_version(Some(&next));
+    let screen = harness.screen();
+    assert!(screen.contains(&next), "the next alpha is named in the corner:\n{screen}");
+}
+
+#[test]
+fn a_person_on_an_alpha_is_not_told_about_the_alpha_already_running() {
+    let place = Place::new("updates-same");
+    let mut harness = harness(place.app(None).update_notice(Some(update_folders(&place))));
+    harness.set_latest_version(Some(env!("CARGO_PKG_VERSION")));
+    assert!(!harness.screen().contains("is out"), "nothing newer, nothing said");
+}
+
+#[test]
+fn with_the_ecosystems_switch_off_nothing_is_asked() {
     let place = Place::new("updates-off");
-    std::fs::write(place.base.join("config/quvyta.conf"), "update-notice = false\n").expect("the family's file");
+    std::fs::write(place.base.join("config/quvyta.conf"), "update-notice = false\n")
+        .expect("the ecosystem's shared file");
     let mut harness = harness(place.app(None).update_notice(Some(update_folders(&place))));
     assert!(harness.update_checks().is_empty(), "nothing is asked");
     harness.set_latest_version(Some("9.4.7"));

@@ -6,7 +6,7 @@
 [![Licence: MIT](https://img.shields.io/crates/l/quvyta-cli.svg)](LICENSE)
 [![Status: alpha](https://img.shields.io/badge/status-alpha-red.svg)](CHANGELOG.md)
 
-**quvyta-cli** opens a full-screen chat in the folder you start it in. You write, and the model's answer streams in. The model can look at the folder on its own; before it changes a file it shows you the diff, and before it runs a command it shows you the command, and nothing happens until you allow it. Nothing outside the folder can be reached. Each folder keeps its own conversation, so opening qcli there again goes on where you stopped. It is part of the Quvyta family of terminal applications, is built on [quvyta-framework](https://github.com/quvyta/framework) and is open source under the MIT licence.
+**quvyta-cli** opens a full-screen chat in the folder you start it in. You write, and the model's answer streams in. The model can look at the folder on its own; before it changes a file it shows you the diff, and before it runs a command it shows you the command, and nothing happens until you allow it. Nothing outside the folder can be reached. Each folder keeps its own conversation, so opening qcli there again goes on where you stopped. It is part of the Quvyta ecosystem of terminal applications, is built on [quvyta-framework](https://github.com/quvyta/framework) and is open source under the MIT licence.
 
 > **Alpha.** This is a first, deliberately small version. It runs the commands you allow in your own shell, with your rights, so read each one before you allow it. Settings, keys and the saved conversations may change between alpha releases. Please report anything that looks wrong at <https://github.com/quvyta/cli/issues>.
 
@@ -31,7 +31,7 @@ key-header = "api-key"                           # leave it out for x-api-key; s
 
 The settings name the key **file**, never the key. qcli reads the key from that file each time it sends a request, and it never writes the key anywhere: not to the settings, not to a saved conversation, not to the screen and not into an error message. Keep the file readable only by you (`chmod 600`).
 
-The language, theme and icons follow the settings the Quvyta family shares in `~/.config/quvyta/quvyta.conf`.
+The language, theme and icons follow the settings every Quvyta app shares in `~/.config/quvyta/quvyta.conf`.
 
 ## What the model can do
 
@@ -65,7 +65,7 @@ The mouse works everywhere: the buttons can be clicked and the conversation scro
 qcli connects to two places.
 
 - **Your provider**, at the address in your settings. Nothing goes to it when qcli starts; the first request leaves when you send your first message. Each request carries the conversation of that folder, the folder's `AGENTS.md` if there is one, and the key in the header you named.
-- **crates.io**, to say when a newer version is out. When qcli opens, at most once a day and without waiting for the answer, it asks crates.io's index for the versions of `quvyta-cli`. Only the package's name and the version you run go out (as the request's `User-Agent`); nothing about you, the folder or the conversation. A newer version is said in the corner with how to update. No network is silence. It is one switch for the whole Quvyta family: `update-notice = false` in `~/.config/quvyta/quvyta.conf` turns it off for every Quvyta application.
+- **crates.io**, to say when a newer version is out. When qcli opens, at most once a day and without waiting for the answer, it asks crates.io's index for the versions of `quvyta-cli`. Only the package's name and the version you run go out (as the request's `User-Agent`); nothing about you, the folder or the conversation. A newer version is said in the corner with how to update. No network is silence. It is one switch for the whole Quvyta ecosystem: `update-notice = false` in `~/.config/quvyta/quvyta.conf` turns it off for every Quvyta application.
 
 qcli sends nothing anywhere else.
 

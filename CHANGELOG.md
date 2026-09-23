@@ -6,7 +6,8 @@ Every release of quvyta-cli, newest first. The format follows [Keep a Changelog]
 
 ### Added
 
-- qcli says when a newer version is out. When it opens, at most once a day and without waiting for the answer, it asks crates.io for the newest version of `quvyta-cli`; only the package's name and the version you run go out. It is on unless you turn it off with `update-notice = false` in `~/.config/quvyta/quvyta.conf`, the one switch for the whole Quvyta family. The README's Network section says exactly what is sent.
+- qcli says when a newer version is out. When it opens, at most once a day and without waiting for the answer, it asks crates.io for the newest version of `quvyta-cli`; only the package's name and the version you run go out. It is on unless you turn it off with `update-notice = false` in `~/.config/quvyta/quvyta.conf`, the one switch for the whole Quvyta ecosystem. The README's Network section says exactly what is sent.
+- The notice knows alphas: someone running an alpha hears about the next alpha and about the first stable release. Built on quvyta-framework 0.1.20.
 
 ## 0.1.0-alpha.1 - 2026-09-23
 

@@ -70,7 +70,7 @@ fn by_message(messages: &BTreeMap<String, String>) -> BTreeMap<&str, BTreeSet<&s
 fn every_language_has_every_key_with_its_placeholders() {
     let english = english();
     let english = by_message(&english);
-    assert_eq!(locales().len(), 9, "the family's nine languages");
+    assert_eq!(locales().len(), 9, "the ecosystem's nine languages");
     for &(file, text) in &locales()[1..] {
         let other = messages(file, text);
         let other = by_message(&other);

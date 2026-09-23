@@ -1,9 +1,9 @@
-//! Where qcli keeps its settings: `cli.conf` in the Quvyta family's folder, beside the other
-//! applications of the family.
+//! Where qcli keeps its settings: `cli.conf` in the Quvyta ecosystem's folder, beside the
+//! other Quvyta apps.
 //!
 //! ```text
 //! ~/.config/quvyta/
-//!     quvyta.conf     the language, theme and icons the family shares
+//!     quvyta.conf     the language, theme and icons every Quvyta app shares
 //!     cli.conf        qcli's settings: the provider it talks to
 //! ```
 //!
@@ -18,7 +18,7 @@ use qframe::storage::{Family, Preferences, Schema, Settings};
 
 use crate::provider::{Endpoint, Key, KeyError};
 
-/// The application's id in the family: its settings file is `cli.conf`.
+/// The application's id in the ecosystem: its settings file is `cli.conf`.
 pub const APP: &str = "cli";
 
 /// The key of the address the Messages API lives under.
@@ -39,13 +39,13 @@ pub fn schema() -> Schema {
     Schema::builtin().text(ADDRESS, "").text(MODEL, "").text(KEY_FILE, "").text(KEY_HEADER, DEFAULT_HEADER)
 }
 
-/// The settings from the family's folder, checked and healed.
+/// The settings from the ecosystem's folder, checked and healed.
 #[must_use]
 pub fn load() -> Settings {
     checked(Settings::load_member(&Family::QUVYTA, APP))
 }
 
-/// [`load`] from `folder` as the family's folder, so a test never touches the person's own
+/// [`load`] from `folder` as the ecosystem's folder, so a test never touches the person's own
 /// settings.
 #[must_use]
 pub fn load_in(folder: &Path) -> Settings {
@@ -57,7 +57,7 @@ fn checked(settings: Settings) -> Settings {
 }
 
 /// The language, theme and icons as qcli sees them: its own when its file names one, else the
-/// family's, else what this machine asks for.
+/// ecosystem's, else what this machine asks for.
 #[must_use]
 pub fn preferences() -> Preferences {
     Family::QUVYTA.preferences(APP, &spoken())
@@ -73,10 +73,10 @@ pub fn spoken() -> I18n {
     i18n
 }
 
-/// Where the family's update notice reads its switch and remembers when it last asked.
+/// Where the ecosystem's update notice reads its switch and remembers when it last asked.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct UpdateFolders {
-    /// The family's configuration folder, whose shared file holds the switch.
+    /// The ecosystem's configuration folder, whose shared file holds the switch.
     pub config: PathBuf,
     /// qcli's state folder, which remembers when the question was last asked.
     pub state: PathBuf,
@@ -87,8 +87,8 @@ impl UpdateFolders {
     /// switch or the last question and so nothing is asked.
     #[must_use]
     pub fn here() -> Option<Self> {
-        let family = Family::QUVYTA;
-        family.config_dir().zip(family.state_dir(APP)).map(|(config, state)| Self { config, state })
+        let ecosystem = Family::QUVYTA;
+        ecosystem.config_dir().zip(ecosystem.state_dir(APP)).map(|(config, state)| Self { config, state })
     }
 }
 
@@ -129,7 +129,7 @@ impl Provider {
     }
 
     /// Writes the provider into `settings`. A header that is the default is not written, the
-    /// way the family writes no default.
+    /// way the ecosystem writes no default.
     pub fn write(&self, settings: &mut Settings) {
         settings.set(ADDRESS, self.address.trim().to_owned());
         settings.set(MODEL, self.model.trim().to_owned());

@@ -19,7 +19,7 @@ name = "qcli"
 path = "src/lib.rs"
 
 [dependencies]
-quvyta-framework = { version = "0.1.19", features = ["updates"] }
+quvyta-framework = { version = "0.1.20", features = ["updates"] }
 serde_json = { version = "1.0.150", features = ["preserve_order"] }
 ureq = { version = "3.4.2", default-features = false, features = ["rustls"] }
 

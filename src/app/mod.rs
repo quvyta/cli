@@ -160,7 +160,7 @@ pub struct QCli {
     /// The number of the turn, part of the conversation view's id: a new turn opens the view at
     /// its end even when the person had scrolled up to read.
     turn: u64,
-    /// Where the family's update notice looks; `None` asks nothing.
+    /// Where the ecosystem's update notice looks; `None` asks nothing.
     updates: Option<UpdateFolders>,
 }
 
