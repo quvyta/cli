@@ -5,7 +5,7 @@ repository = "https://github.com/quvyta/cli"
 readme = "README.md"
 keywords = ["tui", "terminal", "agent", "llm", "coding"]
 categories = ["command-line-utilities", "development-tools"]
-version = "0.1.0-alpha.2"
+version = "0.1.0-alpha.3"
 edition = "2024"
 rust-version = "1.95"
 license = "MIT"
@@ -19,9 +19,11 @@ name = "qcli"
 path = "src/lib.rs"
 
 [dependencies]
-quvyta-framework = { version = "0.1.20", features = ["updates"] }
+quvyta-framework = { version = "0.1.29", features = ["updates"] }
 serde_json = { version = "1.0.150", features = ["preserve_order"] }
 ureq = { version = "3.4.2", default-features = false, features = ["rustls"] }
+# Stopping a command's whole process group needs kill(2) with a group id; no `kill` program is assumed.
+rustix = { version = "1.1.5", default-features = false, features = ["std", "process"] }
 
 [dev-dependencies]
 toml = { version = "1.1.6", default-features = false, features = ["std", "parse"] }

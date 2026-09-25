@@ -2,6 +2,16 @@
 
 Every release of quvyta-cli, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/). While the version is an alpha, anything may change between releases, the settings and the saved conversations included.
 
+## 0.1.0-alpha.3 - 2026-09-25
+
+### Fixed
+
+- Stopping a command now stops everything it started, on every system. When a command ran past its time limit, was cancelled, or left a process running in the background, qcli stopped the whole group through the `kill` program; on a system without that program (a minimal container, for example) only the shell stopped and the rest kept running. qcli now asks the system directly.
+
+### Changed
+
+- Built on quvyta-framework 0.1.29, and uses its `Ecosystem` name for the Quvyta ecosystem's shared folder and settings.
+
 ## 0.1.0-alpha.2 - 2026-09-23
 
 ### Added

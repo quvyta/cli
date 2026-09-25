@@ -21,7 +21,7 @@ use std::io;
 
 use qframe::prelude::*;
 use qframe::runtime::{Task, TaskId, Update};
-use qframe::storage::{Family, Settings};
+use qframe::storage::{Ecosystem, Settings};
 
 use crate::actions::{Action, Outcome, Preview, Workspace};
 use crate::config::{self, Missing, Provider, UpdateFolders};
@@ -509,7 +509,7 @@ impl App for QCli {
 pub fn run() -> io::Result<()> {
     let folder = std::env::current_dir()?;
     let workspace = Workspace::new(&folder)?;
-    let conversations = Family::QUVYTA
+    let conversations = Ecosystem::QUVYTA
         .state_dir(config::APP)
         .unwrap_or_else(|| std::env::temp_dir().join("quvyta-cli"))
         .join("conversations");

@@ -8,6 +8,8 @@ use std::sync::{Arc, Mutex, PoisonError};
 use std::thread;
 use std::time::{Duration, Instant};
 
+use rustix::process::{Pid, Signal, kill_process_group};
+
 use super::Outcome;
 use super::workspace::Workspace;
 
@@ -80,7 +82,7 @@ pub(super) fn run(workspace: &Workspace, command: &str, cancelled: &dyn Fn() -> 
     // A process the command left in the background can keep the pipe open after the command
     // itself has ended; it belongs to the same group, so the group is stopped.
     if closed_signal.recv_timeout(GRACE).is_err() {
-        signal_group(process.id(), "KILL");
+        signal_group(process.id(), Signal::KILL);
         let _ = closed_signal.recv_timeout(GRACE);
     }
     let captured = captured.lock().unwrap_or_else(PoisonError::into_inner);
@@ -136,7 +138,7 @@ fn drain(mut reader: io::PipeReader, sink: &Mutex<Captured>) {
 
 /// Asks the whole group to end, then forces it if it has not ended within the grace time.
 fn stop(process: &mut Child) {
-    signal_group(process.id(), "TERM");
+    signal_group(process.id(), Signal::TERM);
     let deadline = Instant::now() + GRACE;
     while Instant::now() < deadline {
         if matches!(process.try_wait(), Ok(Some(_))) {
@@ -144,22 +146,17 @@ fn stop(process: &mut Child) {
         }
         thread::sleep(POLL);
     }
-    signal_group(process.id(), "KILL");
+    signal_group(process.id(), Signal::KILL);
     let _ = process.kill();
     let _ = process.wait();
 }
 
-/// Sending a signal to a group needs `kill(2)` with a negative id; the `kill` program does that
-/// without `unsafe` code here.
-fn signal_group(group: u32, signal: &str) {
-    let _ = Command::new("kill")
-        .arg(format!("-{signal}"))
-        .arg("--")
-        .arg(format!("-{group}"))
-        .stdin(Stdio::null())
-        .stdout(Stdio::null())
-        .stderr(Stdio::null())
-        .status();
+/// Signals the command's whole group. This calls `kill(2)` directly: the `kill` program is not
+/// on every system (a minimal container has none), and without it nothing would be stopped.
+fn signal_group(group: u32, signal: Signal) {
+    let Some(group) = i32::try_from(group).ok().and_then(Pid::from_raw) else { return };
+    // The group may already be gone; there is nothing left to stop then.
+    let _ = kill_process_group(group, signal);
 }
 
 fn describe(status: ExitStatus) -> String {

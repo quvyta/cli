@@ -14,7 +14,7 @@
 use std::path::{Path, PathBuf};
 
 use qframe::i18n::I18n;
-use qframe::storage::{Family, Preferences, Schema, Settings};
+use qframe::storage::{Ecosystem, Preferences, Schema, Settings};
 
 use crate::provider::{Endpoint, Key, KeyError};
 
@@ -42,7 +42,7 @@ pub fn schema() -> Schema {
 /// The settings from the ecosystem's folder, checked and healed.
 #[must_use]
 pub fn load() -> Settings {
-    checked(Settings::load_member(&Family::QUVYTA, APP))
+    checked(Settings::load_member(&Ecosystem::QUVYTA, APP))
 }
 
 /// [`load`] from `folder` as the ecosystem's folder, so a test never touches the person's own
@@ -53,14 +53,14 @@ pub fn load_in(folder: &Path) -> Settings {
 }
 
 fn checked(settings: Settings) -> Settings {
-    settings.member_of(&Family::QUVYTA).schema(schema()).self_heal(true)
+    settings.member_of(&Ecosystem::QUVYTA).schema(schema()).self_heal(true)
 }
 
 /// The language, theme and icons as qcli sees them: its own when its file names one, else the
 /// ecosystem's, else what this machine asks for.
 #[must_use]
 pub fn preferences() -> Preferences {
-    Family::QUVYTA.preferences(APP, &spoken())
+    Ecosystem::QUVYTA.preferences(APP, &spoken())
 }
 
 /// The languages qcli speaks, for choosing the machine's one before the runtime is built.
@@ -87,7 +87,7 @@ impl UpdateFolders {
     /// switch or the last question and so nothing is asked.
     #[must_use]
     pub fn here() -> Option<Self> {
-        let ecosystem = Family::QUVYTA;
+        let ecosystem = Ecosystem::QUVYTA;
         ecosystem.config_dir().zip(ecosystem.state_dir(APP)).map(|(config, state)| Self { config, state })
     }
 }

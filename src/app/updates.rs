@@ -7,7 +7,7 @@
 
 use qframe::prelude::*;
 use qframe::runtime::UpdateCheck;
-use qframe::storage::Family;
+use qframe::storage::Ecosystem;
 
 use super::{Msg, QCli};
 use crate::config::{APP, UpdateFolders};
@@ -25,12 +25,17 @@ impl QCli {
     /// The question for a newer version of qcli, when the ecosystem's switch is on.
     pub(super) fn ask_for_update(&self) -> Command<Msg> {
         let Some(folders) = &self.updates else { return Command::none() };
-        if !Family::QUVYTA.update_notice_in(&folders.config) {
+        if !Ecosystem::QUVYTA.update_notice_in(&folders.config) {
             return Command::none();
         }
-        let check =
-            UpdateCheck::new(Family::QUVYTA, APP, env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"), Msg::NewVersion)
-                .in_folders(folders.config.clone(), folders.state.clone());
+        let check = UpdateCheck::new(
+            Ecosystem::QUVYTA,
+            APP,
+            env!("CARGO_PKG_NAME"),
+            env!("CARGO_PKG_VERSION"),
+            Msg::NewVersion,
+        )
+        .in_folders(folders.config.clone(), folders.state.clone());
         Command::check_for_update(check)
     }
 }
